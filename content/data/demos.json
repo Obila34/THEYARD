@@ -1,0 +1,5 @@
+[
+  { "id": 1, "episode": "001", "founder": "Amina Odhiambo", "company": "FarmPulse", "tagline": "AI crop health diagnostics via WhatsApp photo — built in Nairobi", "youtubeId": "dQw4w9WgXcQ", "date": "2026-01-16" },
+  { "id": 2, "episode": "002", "founder": "Kofi Mensah", "company": "PayTrack", "tagline": "Real-time mobile money reconciliation for African SMEs — built in Accra", "youtubeId": "dQw4w9WgXcQ", "date": "2026-01-23" },
+  { "id": 3, "episode": "003", "founder": "Ngozi Eze", "company": "MediBridge", "tagline": "AI triage assistant for rural clinics — built in Lagos", "youtubeId": "dQw4w9WgXcQ", "date": "2026-01-30" }
+]

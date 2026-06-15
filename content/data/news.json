@@ -1,0 +1,8 @@
+[
+  { "id": 1, "headline": "African Union adopts continental AI strategy framework", "source": "Business Daily", "url": "#", "timestamp": "2026-01-30", "tag": "POLICY" },
+  { "id": 2, "headline": "Safaricom and MTN pilot cross-border AI customer service", "source": "TechCabal", "url": "#", "timestamp": "2026-01-28", "tag": "TELCO" },
+  { "id": 3, "headline": "Mobile money APIs across Africa get unified developer docs", "source": "TechWeez", "url": "#", "timestamp": "2026-01-26", "tag": "FINTECH" },
+  { "id": 4, "headline": "Lagos startup raises $3.1M for AI crop diagnostics across East Africa", "source": "Disrupt Africa", "url": "#", "timestamp": "2026-01-24", "tag": "AGRITECH" },
+  { "id": 5, "headline": "Google.org commits $5M to AI education across the continent", "source": "Reuters Africa", "url": "#", "timestamp": "2026-01-22", "tag": "EDUCATION" },
+  { "id": 6, "headline": "Pan-African NLP dataset covering 12 languages released", "source": "The Yard", "url": "#", "timestamp": "2026-01-20", "tag": "RESEARCH" }
+]
