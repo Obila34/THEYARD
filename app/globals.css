@@ -179,6 +179,15 @@ a:focus-visible {
   background: var(--heat);
   color: var(--coal) !important;
 }
+/* Same fix for the top-right CTA: keep its label dark in every state,
+   only the background should react to hover. */
+a.nav-cta,
+a.nav-cta:link,
+a.nav-cta:visited,
+a.nav-cta:hover,
+a.nav-cta:focus-visible {
+  color: var(--coal) !important;
+}
 
 /* ---------- nav actions (CTA + mobile hamburger) ---------- */
 .nav-actions {
@@ -203,25 +212,35 @@ a:focus-visible {
   width: 22px;
   height: 2px;
   background: var(--molten);
+  transition: transform 0.25s ease, opacity 0.2s ease;
 }
+/* burger morphs into an X while the menu is open */
+.nav-burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.is-open span:nth-child(2) { opacity: 0; }
+.nav-burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ---------- fullscreen mobile menu overlay ---------- */
+/* ---------- slide-down mobile menu panel ----------
+   Anchored under the nav, height = content (does NOT cover the screen).
+   Enter/exit is animated smoothly by framer-motion in Nav.tsx. */
 .nav-overlay {
   position: fixed;
-  inset: 0;
-  z-index: 200;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 90; /* below the fixed nav (z 100) so the bar stays on top */
   background: rgba(22, 18, 14, 0.98);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 90, 0, 0.25);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 88px 24px 30px; /* top padding clears the fixed nav bar */
 }
 .nav-overlay-link {
   font-family: var(--font-stencil), sans-serif;
-  font-size: clamp(36px, 10vw, 56px);
+  font-size: clamp(28px, 8vw, 44px);
   text-transform: uppercase;
   color: var(--bone) !important;
   letter-spacing: 2px;
@@ -231,28 +250,6 @@ a:focus-visible {
 .nav-overlay-link:hover,
 .nav-overlay-link:active {
   color: var(--molten) !important;
-}
-.nav-overlay-close {
-  position: absolute;
-  top: 20px;
-  right: 24px;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--ash);
-  text-transform: uppercase;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.nav-overlay-foot {
-  position: absolute;
-  bottom: 32px;
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  color: var(--ash);
-  letter-spacing: 3px;
-  text-transform: uppercase;
 }
 
 /* ============================================================
@@ -278,6 +275,16 @@ a:focus-visible {
   background: var(--heat);
   color: #16120E !important;
   transform: translateY(-2px);
+}
+/* Keep the label black & steady in EVERY state. The global `a:link` rule
+   out-specifies `.btn-molten`, so anchors need this explicit lock —
+   otherwise the text reads orange and only turns black on hover. */
+a.btn-molten,
+a.btn-molten:link,
+a.btn-molten:visited,
+a.btn-molten:hover,
+a.btn-molten:focus-visible {
+  color: #16120E !important;
 }
 
 .btn-outline {
@@ -739,6 +746,41 @@ a:focus-visible {
 .btn-outline.btn-sm {
   padding: 11px 22px;
   font-size: 11px;
+}
+
+/* ---------- DEMO "COMING SOON" STATE ---------- */
+/* reuses .demo-embed for the exact same 16:9 frame as the video */
+.demo-soon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.demo-soon-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+/* badge top-right, matching the site's existing tag/badge style */
+.demo-soon-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--molten);
+  border: 1px solid var(--molten);
+  padding: 4px 10px;
+}
+/* greyed-out, non-interactive "Watch the Drop" until the drop is live */
+.btn-outline.is-soon {
+  color: var(--ash) !important;
+  border-color: var(--soot);
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* ============================================================

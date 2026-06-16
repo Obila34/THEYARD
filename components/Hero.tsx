@@ -69,10 +69,12 @@ export default function Hero({ latest }: { latest?: ArticleMeta }) {
           </motion.p>
 
           <motion.div variants={line} className="hero-actions">
+            {/* Both hero CTAs use btn-molten — identical style/hover to the
+                "Smoke Signal" newsletter button. Hrefs unchanged. */}
             <Link href="/blog" className="btn-molten">
               Read the Blog
             </Link>
-            <Link href="/demos" className="btn-outline">
+            <Link href="/demos" className="btn-molten">
               Watch Demos
             </Link>
           </motion.div>
