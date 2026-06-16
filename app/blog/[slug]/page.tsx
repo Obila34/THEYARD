@@ -10,15 +10,16 @@ import ArticleCard from "@/components/ArticleCard";
 import RevealWrapper from "@/components/RevealWrapper";
 
 interface Params {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: Params): Metadata {
-  const article = getArticleBySlug(params.slug);
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getArticleBySlug(slug);
   if (!article) return { title: "Not Found — The Yard" };
   return {
     title: `${article.title} — The Yard`,
@@ -43,8 +44,9 @@ function readTime(content: string) {
   return Math.max(1, Math.round(words / 200));
 }
 
-export default function ArticlePage({ params }: Params) {
-  const article = getArticleBySlug(params.slug);
+export default async function ArticlePage({ params }: Params) {
+  const { slug } = await params;
+  const article = getArticleBySlug(slug);
   if (!article) notFound();
 
   const related = getAllArticles()
